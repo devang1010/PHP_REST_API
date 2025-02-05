@@ -40,4 +40,18 @@
             echo json_encode(["status" => "error", "message" => "Could not add users"]);
         }
     }
+
+    // To Update information of the user
+    elseif($method == "PUT"){
+        $data = json_decode(file_get_contents("php://input"), true);
+        $serialnumber = $data['serial_number'];
+        $username = $data['username'];
+        $email = $data['email'];
+        $sql = "UPDATE `users` SET `username` = '$username', `email` = '$email' WHERE `serial_number` = '$serialnumber'";
+        if(mysqli_query($conn, $sql)){
+            echo json_encode(["status" => "success", "message" => "User successfully updated"]);
+        }else{
+            echo json_encode(["status" => "error", "message" => "User is not updated"]);
+        }
+    }
 ?>
