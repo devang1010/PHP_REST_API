@@ -63,7 +63,7 @@
         if(mysqli_query($conn, $sql)){
             echo json_encode(["status" => "success", "message" => "User deleted"]);
         }else{
-            echo json_encode(["status" => "error", "message" => "Error while deleting the user"]);
+            echo json_encode(["status" => "error", "message" => "User not found"]);
         }
     }
 ?>
