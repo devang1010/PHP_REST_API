@@ -54,4 +54,16 @@
             echo json_encode(["status" => "error", "message" => "User is not updated"]);
         }
     }
+
+    // To delete a user
+    elseif($method == "DELETE"){
+        $data = json_decode(file_get_contents("php://input"), true);
+        $serialnumber = $data['serial_number'];
+        $sql = "DELETE FROM `users` WHERE `serial_number` = '$serialnumber'";
+        if(mysqli_query($conn, $sql)){
+            echo json_encode(["status" => "success", "message" => "User deleted"]);
+        }else{
+            echo json_encode(["status" => "error", "message" => "Error while deleting the user"]);
+        }
+    }
 ?>
